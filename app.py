@@ -11,7 +11,10 @@ with open('transformer.pkl','rb') as file:
     pt = pickle.load(file)
 
 def prediction(input_list):
-    
+
+    tran_data = pt.transform([[input_list[0],input_list[3]]])
+    input_list[0] = tran_data[0][0]
+    input_list[3] = tran_data[0][1]
     pred = model.predict_proba([input_list])[:,1][0]
     
     if pred>0.5:
@@ -34,9 +37,6 @@ def main():
     wday_lambda = (lambda x: 0 if x=='Mon' else 1 if x=='Tues' else 2 if x=='Wed' else 3 if x=='Thus' else 4 if x=='Fri' else 5 if x=='Sat' else 6)
     wday = st.selectbox('What is the weekday of arrival',['Mon','Tues','Wed','Thus','Fri','Sat','Sun'])
     
-    tran_data = pt.transform([[float(lt),float(price)]])
-    lt_t = tran_data[0][0]
-    price_t = tran_data[0][1]
 
     inp_list = [lt_t,mst,spcl,price_t,adult,wkd,wk,park,month,day,wkday]
 
