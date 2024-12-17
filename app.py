@@ -40,7 +40,7 @@ def main():
     wday = st.selectbox('What is the weekday of arrival',['Mon','Tues','Wed','Thus','Fri','Sat','Sun'])
     
 
-    inp_list = [lt_t,mst,spcl,price_t,adult,wkd,wk,park,month,day,wkday]
+    inp_list = [lt,mst,spcl,price,adult,wkd,park,wk,month,day,wkday]
 
     if st.button('Predict'):
         response = prediction(inp_list)
